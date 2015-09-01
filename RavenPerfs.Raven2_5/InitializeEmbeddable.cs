@@ -41,17 +41,19 @@ namespace RavenPerfs.Raven2_5
         }
 
         [Fact]
-        public void Initialize_without_index_100_times()
+        public void Initialize_without_index_multiple_times_2_5()
         {
             var stopwatch = Stopwatch.StartNew();
             for (int i = 0; i < 100; i++)
             {
+                var initializeSw = Stopwatch.StartNew();
                 var embeddableDocumentStore = new EmbeddableDocumentStore
                 {
                     RunInMemory = true
                 };
 
                 embeddableDocumentStore.Initialize();
+                Console.WriteLine(initializeSw.ElapsedMilliseconds);
                 embeddableDocumentStore.Dispose();
             }
             Console.WriteLine("Done: {0}", stopwatch.Elapsed);
