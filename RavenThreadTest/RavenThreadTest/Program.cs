@@ -13,6 +13,9 @@ namespace RavenThreadTest
         private static Stopwatch Stopwatch;
         static void Main(string[] args)
         {
+            //https://groups.google.com/forum/#!topic/ravendb/jNfe2OJ5f9c
+            ThreadPool.SetMinThreads(20, 1);
+
             var maxTasks = 10;
             Console.WriteLine("Running 3.0.3785 with {0} tasks", maxTasks);
             var tasks = new List<Task>();
