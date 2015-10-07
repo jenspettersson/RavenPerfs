@@ -1,22 +1,15 @@
-﻿using System.Collections.Generic;
-using Raven.Abstractions.Data;
-using Raven.Client.Embedded;
+﻿using Raven.Client.Embedded;
 using Xunit;
 
 namespace RavenPerfs.Raven3
 {
-    public class Entity
+    public class FloatEntity
     {
         public string Id { get; set; }
-        public List<string> History { get; set; }
-
-        public Entity()
-        {
-            History = new List<string> { "Entity created" };
-        }
+        public float Value { get; set; }
     }
-    
-    public class LoadCausesChange
+
+    public class LoadCausesChange_OnFloat
     {
         [Fact]
         public void Load_on_state_with_list_in_ctor()
@@ -29,15 +22,17 @@ namespace RavenPerfs.Raven3
 
             using (var session = store.OpenSession())
             {
-                session.Store(new Entity {Id = "Entities/1"});
+                session.Store(new FloatEntity { Id = "FloatEntities/1", Value = 0.3f});
                 session.SaveChanges();
             }
 
             using (var session = store.OpenSession())
             {
-                var entity = session.Load<Entity>("Entities/1");
+                var entity = session.Load<FloatEntity>("FloatEntities/1");
 
-                Assert.False(session.Advanced.HasChanges);
+                var whatChanged = session.Advanced.WhatChanged();
+
+                Assert.Empty(whatChanged);
             }
         }
     }

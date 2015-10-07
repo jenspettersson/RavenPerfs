@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="InitializeEmbeddable.cs" />
     <Compile Include="LoadCausesChange.cs" />
+    <Compile Include="LoadCausesChange_OnFloat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RavenTests\CanCallLastOnArray.cs" />
   </ItemGroup>
