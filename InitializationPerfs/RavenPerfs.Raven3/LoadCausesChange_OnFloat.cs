@@ -12,7 +12,7 @@ namespace RavenPerfs.Raven3
     public class LoadCausesChange_OnFloat
     {
         [Fact]
-        public void Load_on_state_with_list_in_ctor()
+        public void Load_on_state_with_float()
         {
             var store = new EmbeddableDocumentStore
             {
